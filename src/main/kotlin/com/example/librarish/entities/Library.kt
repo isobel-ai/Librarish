@@ -7,6 +7,8 @@ import jakarta.persistence.Entity
 class Library(
     @Column(nullable = false)
     val name: String,
+    @Column(nullable = false)
+    val password: String,
     val address: String,
     val townOrCity: String,
     val postcode: String
