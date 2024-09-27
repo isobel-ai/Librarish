@@ -6,6 +6,7 @@ import com.example.librarish.types.AccountType
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
@@ -16,8 +17,6 @@ class LoginController(
     @GetMapping("/")
     fun getLoginPage(model: Model): String {
         model.addAttribute("loginForm", LoginForm())
-        model.addAttribute("options", AccountType.entries.toTypedArray())
-        model.addAttribute("errorMessage", "")
         return "pages/loginPage"
     }
 
@@ -35,5 +34,10 @@ class LoginController(
             )
         }
         return "pages/loginPage"
+    }
+
+    @ModelAttribute
+    fun addAccountOptions(model: Model) {
+        model.addAttribute("options", AccountType.entries.toTypedArray())
     }
 }
