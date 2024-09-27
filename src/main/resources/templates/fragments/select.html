@@ -1,0 +1,6 @@
+<div th:fragment="select(label, field, options)" class="govuk-form-group">
+    <label class="govuk-label" th:text="${label}"></label>
+    <select class="govuk-select" th:field="*{__${field}__}">
+        <option th:each="option: ${options}" th:value="${option}" th:text="${option}"></option>
+    </select>
+</div>

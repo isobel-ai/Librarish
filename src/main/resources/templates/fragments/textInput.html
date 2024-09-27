@@ -1,0 +1,4 @@
+<div th:fragment="textInput(label, field)" class="govuk-form-group">
+    <label class="govuk-label" th:text="${label}"></label>
+    <input class="govuk-input" type="text" th:field="*{__${field}__}">
+</div>
