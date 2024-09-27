@@ -2,12 +2,14 @@
 <html th:replace="~{fragments/layout :: layout('Login', ~{::main})}">
 <main class="govuk-main-wrapper" id="main-content">
     <h1 class="govuk-heading-xl">Sign In</h1>
-    <form th:action="@{/}" th:object="${loginForm}" method="post">
+    <form th:action="@{/}" th:object="${loginForm}" method="post" id="loginForm">
         <div th:replace="~{fragments/textInput :: textInput('Name', 'name')}"></div>
         <div th:replace="~{fragments/passwordInput :: passwordInput('password')}"></div>
         <div th:replace="~{fragments/select :: select('Account Type', 'accountType', ${options})}"></div>
-        <button type="submit" class="govuk-button" data-module="govuk-button">Sign In</button>
+        <button type="submit" class="govuk-button" data-module="govuk-button" id="loginButton" disabled>Sign In
+        </button>
         <p th:replace="~{fragments/error :: error(${errorMessage})}"></p>
     </form>
+    <script th:src="@{/assets/js/loginButtonHandler.js}"></script>
 </main>
 </html>
