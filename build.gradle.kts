@@ -35,6 +35,7 @@ dependencies {
         exclude("org.junit.vintage", "junit-vintage-engine")
     }
     testImplementation("com.ninja-squad:springmockk:3.0.1")
+    testImplementation("com.microsoft.playwright:playwright:1.47.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
@@ -49,6 +50,15 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+// Usage: ./gradlew playwright --args="help"
+// ./gradlew playwright --args="codegen --channel=msedge  http://localhost:8080/"
+tasks.register<JavaExec>("playwright") {
+    classpath(sourceSets["test"].runtimeClasspath)
+    mainClass.set("com.microsoft.playwright.CLI")
+}
+
 allOpen {
     annotations("jakarta.persistence.Entity", "jakarta.persistence.MappedSuperclass")
 }
+
+
