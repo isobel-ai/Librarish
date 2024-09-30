@@ -21,10 +21,11 @@ class LoginController(
     }
 
     @PostMapping("/")
-    fun loginPage(model: Model, loginForm: LoginForm): String {
+    fun postLoginPage(model: Model, loginForm: LoginForm): String {
         try {
             if (loginService.accountExists(loginForm)) {
-                return "redirect:/home/${loginForm.accountType}/${loginForm.name}"
+                val lowercaseAccountType = loginForm.accountType.toString().lowercase()
+                return "redirect:${loginForm.name}/${lowercaseAccountType}Home/"
             }
             model.addAttribute("errorMessage", "Invalid details.")
         } catch (e: Exception) {
